@@ -28,13 +28,6 @@ public class App {
         long delay = System.currentTimeMillis() - start;
         System.out.println("\nApp.total => " + listaURLGlobal.size());
         System.out.println("\nFinalizou processamento => " + delay + " milissegundos" );
-
-        for (String url : listaURLGlobal) {
-            System.out.println(url);
-        }
-        delay = System.currentTimeMillis() - start;
-        System.out.println("\nFinalizou listagem => " + delay + " milissegundos" );
-
     }
 
     private static void countURL(String urlBase) {
