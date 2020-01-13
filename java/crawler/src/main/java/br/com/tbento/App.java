@@ -62,7 +62,7 @@ public class App {
             in.close();
             
             for (String suburl : listaURL) {
-                countURL(suburl);
+                    countURL(suburl);
             }
 
             listaURL.clear();
@@ -104,6 +104,7 @@ public class App {
                     href.toLowerCase().indexOf(".n3")<0 && 
                     href.toLowerCase().indexOf(".cfm")<0 && 
                     href.toLowerCase().indexOf(".css")<0 && 
+                    href.toLowerCase().indexOf(".ico")<0 && 
                     href.toLowerCase().indexOf(".js")<0 && 
                     href.toLowerCase().indexOf(".pdf")<0 && 
                     href.toLowerCase().indexOf(".png")<0 && 
@@ -119,6 +120,10 @@ public class App {
                     } else if(!href.substring(0,4).toLowerCase().equals("http")) {  // relative path
                         href = urlServer + urlPath + href;
                     }
+
+                    if(href.substring(href.length()-1).equals("/"))
+                        href = href.substring(0, href.length()-1);
+
                     return href;
                 }
             } catch (StringIndexOutOfBoundsException e) {

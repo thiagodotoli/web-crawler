@@ -9,11 +9,12 @@ Laboratório de criação de um web-crawler, com o objetivo de:
 
 ### SET ###
 
-App.total => 18
+App.total => 15
 
-Finalizou processamento => 17009 milissegundos
+Finalizou processamento => 13431 milissegundos
 
 ### LIST ###
 
-Total urls => 85
-Finalizou => 15410 milissegundos
+App.total => 15 Finalizou processamento => 7956 milissegundos
+
+Finalizou listagem com sort => 7959 milissegundos
