@@ -24,13 +24,19 @@ public class App {
         countURL(urlServer + urlPath);
 
         // FIM PROCESSAMENTO
-        final long delay = System.currentTimeMillis() - start;
-        System.out.println("App.total => " + listaURLGlobal.size());
-        System.out.println("\nFinalizou => " + delay + " milissegundos" );
+        long delay = System.currentTimeMillis() - start;
+        System.out.println("\nApp.total => " + listaURLGlobal.size());
+        System.out.println("\nFinalizou processamento => " + delay + " milissegundos" );
+
+        for (String url : listaURLGlobal) {
+            System.out.println(url);
+        }
+        delay = System.currentTimeMillis() - start;
+        System.out.println("\nFinalizou listagem => " + delay + " milissegundos" );
+
     }
 
     private static void countURL(String urlBase) {
-        //System.out.println("Start => " + urlBase);
         listaURLGlobal.add(urlBase);
 
         URL website;
@@ -38,7 +44,6 @@ public class App {
         BufferedReader in = null;
         try {
             website = new URL(urlBase);
-
             connection = website.openConnection();
 
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -47,18 +52,15 @@ public class App {
             inputLine = in.readLine();
 
             Set<String> listaURL = new HashSet<>();
-            int totalUrls = 0;
             while (inputLine != null) {
                 final String url = getURL(inputLine.toString());
                 if (url != null && !listaURLGlobal.contains(url)) {
                    listaURL.add(url);
-                    totalUrls += 1;
                 }
                 inputLine = in.readLine();
             }
             in.close();
-            System.out.printf("\nurl: %s - watch: %d - total: %d \n", urlBase, totalUrls, listaURL.size());
-
+            
             for (String suburl : listaURL) {
                 countURL(suburl);
             }
@@ -66,7 +68,7 @@ public class App {
             listaURL.clear();
 
         } catch (IOException ex) {
-            System.err.printf("\ncountURL => error: %s", ex.getLocalizedMessage());
+            System.err.printf("\ncountURL => %s - error: %s", urlBase, ex.getLocalizedMessage());
         } finally {
             if(in != null)
                 try {
@@ -95,18 +97,21 @@ public class App {
                 if(href != null &&
                     !href.isEmpty() &&
                     !href.equals("#") && 
-                    href.indexOf("instagram")<0 && 
-                    href.indexOf("google")<0 && 
-                    href.indexOf("facebook")<0 && 
-                    href.indexOf("linkedin")<0 && 
-                    href.indexOf(".n3")<0 && 
-                    href.indexOf(".cfm")<0 && 
-                    href.indexOf(".css")<0 && 
-                    href.indexOf(".js")<0 && 
-                    href.indexOf(".pdf")<0 && 
-                    href.indexOf(".n3")<0 && 
-                    href.indexOf("javascript:")<0 && 
-                    href.indexOf("data:")<0 && 
+                    href.toLowerCase().indexOf("instagram")<0 && 
+                    href.toLowerCase().indexOf("google")<0 && 
+                    href.toLowerCase().indexOf("facebook")<0 && 
+                    href.toLowerCase().indexOf("linkedin")<0 && 
+                    href.toLowerCase().indexOf(".n3")<0 && 
+                    href.toLowerCase().indexOf(".cfm")<0 && 
+                    href.toLowerCase().indexOf(".css")<0 && 
+                    href.toLowerCase().indexOf(".js")<0 && 
+                    href.toLowerCase().indexOf(".pdf")<0 && 
+                    href.toLowerCase().indexOf(".png")<0 && 
+                    href.toLowerCase().indexOf(".jpg")<0 && 
+                    href.toLowerCase().indexOf(".jpeg")<0 && 
+                    href.toLowerCase().indexOf(".n3")<0 && 
+                    href.toLowerCase().indexOf("javascript:")<0 && 
+                    href.toLowerCase().indexOf("data:")<0 && 
                     href.indexOf("./")<0) {
                 
                     if(href.substring(0,1).equals("/")) {  // abosolute path without server

@@ -9,8 +9,9 @@ Laboratório de criação de um web-crawler, com o objetivo de:
 
 ### SET ###
 
-Finalizou => 19455 milissegundos
+App.total => 18
 
+Finalizou processamento => 17009 milissegundos
 
 ### LIST ###
 
