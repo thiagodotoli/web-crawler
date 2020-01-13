@@ -13,8 +13,15 @@ App.total => 15
 
 Finalizou processamento => 13431 milissegundos
 
+### TREESET ###
+
+App.total => 15
+
+Finalizou processamento => 11159 milissegundos
+
 ### LIST ###
 
 App.total => 15 Finalizou processamento => 7956 milissegundos
 
 Finalizou listagem com sort => 7959 milissegundos
+

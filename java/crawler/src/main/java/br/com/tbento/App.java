@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +15,7 @@ public class App {
 
     private static String urlServer = "http://2tti.com.br";
     private static String urlPath = "/";
-    private static Set<String> listaURLGlobal = new HashSet<>();
+    private static Set<String> listaURLGlobal = new TreeSet<String>();
     private static Pattern urlPattern = Pattern.compile("\\s*(?i)href\\s*=\\s*(\"([^\"]*\")|'[^']*'|([^'\">\\s]+))",
         Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     public static void main(final String[] args) throws Exception {
