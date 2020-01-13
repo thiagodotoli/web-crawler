@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +15,7 @@ public class App {
 
     private static String urlServer = "http://2tti.com.br";
     private static String urlPath = "/";
-    private static Set<String> listaURLGlobal = new HashSet<>();
+    private static List<String> listaURLGlobal = new ArrayList<>();
     private static Pattern urlPattern = Pattern.compile("\\s*(?i)href\\s*=\\s*(\"([^\"]*\")|'[^']*'|([^'\">\\s]+))",
         Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     public static void main(final String[] args) throws Exception {
@@ -28,11 +29,19 @@ public class App {
         System.out.println("\nApp.total => " + listaURLGlobal.size());
         System.out.println("\nFinalizou processamento => " + delay + " milissegundos" );
 
+        Comparator<String> defaultComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        };
+        listaURLGlobal.sort(defaultComparator);
+
         for (String url : listaURLGlobal) {
             System.out.println(url);
         }
         delay = System.currentTimeMillis() - start;
-        System.out.println("\nFinalizou listagem => " + delay + " milissegundos" );
+        System.out.println("\nFinalizou listagem com sort => " + delay + " milissegundos" );
 
     }
 
@@ -51,7 +60,7 @@ public class App {
       
             inputLine = in.readLine();
 
-            Set<String> listaURL = new HashSet<>();
+            List<String> listaURL = new ArrayList<>();
             while (inputLine != null) {
                 final String url = getURL(inputLine.toString());
                 if (url != null && !listaURLGlobal.contains(url)) {
@@ -62,7 +71,8 @@ public class App {
             in.close();
             
             for (String suburl : listaURL) {
-                countURL(suburl);
+                if(!listaURLGlobal.contains(suburl))
+                    countURL(suburl);
             }
 
             listaURL.clear();
@@ -104,6 +114,7 @@ public class App {
                     href.toLowerCase().indexOf(".n3")<0 && 
                     href.toLowerCase().indexOf(".cfm")<0 && 
                     href.toLowerCase().indexOf(".css")<0 && 
+                    href.toLowerCase().indexOf(".ico")<0 && 
                     href.toLowerCase().indexOf(".js")<0 && 
                     href.toLowerCase().indexOf(".pdf")<0 && 
                     href.toLowerCase().indexOf(".png")<0 && 
@@ -119,6 +130,10 @@ public class App {
                     } else if(!href.substring(0,4).toLowerCase().equals("http")) {  // relative path
                         href = urlServer + urlPath + href;
                     }
+
+                    if(href.substring(href.length()-1).equals("/"))
+                        href = href.substring(0, href.length()-1);
+                    
                     return href;
                 }
             } catch (StringIndexOutOfBoundsException e) {
