@@ -10,3 +10,9 @@ Laboratório de criação de um web-crawler, com o objetivo de:
 ### SET ###
 
 Finalizou => 19455 milissegundos
+
+
+### LIST ###
+
+Total urls => 85
+Finalizou => 15410 milissegundos
