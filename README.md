@@ -10,10 +10,18 @@ Laboratório de criação de um web-crawler, com o objetivo de:
 SITE: www.2tti.com.br
 
 ### SET ###
+
 App.total => 18
 Finalizou processamento => 17009 milissegundos
 
 ### LIST ###
+
 App.total => 15
 Finalizou processamento => 7956 milissegundos
 Finalizou listagem com sort => 7959 milissegundos
+
+### LINKED-LIST ###
+
+App.total => 15
+Finalizou processamento => 7945 milissegundos
+Finalizou listagem com sort => 7947 milissegundos

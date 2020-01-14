@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,10 +15,11 @@ public class App {
 
     private static String urlServer = "http://2tti.com.br";
     private static String urlPath = "/";
-    private static List<String> listaURLGlobal = new ArrayList<>();
+    private static List<String> listaURLGlobal = new LinkedList<>();
     private static Pattern urlPattern = Pattern.compile("\\s*(?i)href\\s*=\\s*(\"([^\"]*\")|'[^']*'|([^'\">\\s]+))",
         Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     public static void main(final String[] args) throws Exception {
+        
         final long start = System.currentTimeMillis();
         System.out.println("Start => " + start);
 
@@ -60,7 +61,7 @@ public class App {
       
             inputLine = in.readLine();
 
-            List<String> listaURL = new ArrayList<>();
+            List<String> listaURL = new LinkedList<>();
             while (inputLine != null) {
                 final String url = getURL(inputLine.toString());
                 if (url != null && !listaURLGlobal.contains(url)) {
