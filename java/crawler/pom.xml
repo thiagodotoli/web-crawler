@@ -4,11 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>br.com.tbento</groupId>
-  <artifactId>crawler</artifactId>
+  <groupId>br.com.aws</groupId>
+  <artifactId>lambda-java-crawler</artifactId>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>crawler</name>
+  <name>lambda-java-crawler</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -19,6 +20,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-core</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
